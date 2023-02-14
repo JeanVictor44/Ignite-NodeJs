@@ -1,22 +1,16 @@
 import { Category } from "../models/Category"
+import { ICategoriesRepository, IcreateCategoryDTO } from "./ICategoriesRepository";
 
-// DTO => Data transfer object
-// Interface criada para que a camada de rotas não conheça
-// todos os atributos da camada de categorias
-// Apenas quem deve conhecer e manipula a camada de categorias é o repository
-interface IcreateCategory {
-  name: string;
-  description: string
-}
 
-class CategoriesRepositories {
+
+class CategoriesRepository implements ICategoriesRepository{
   private categories: Category[];
 
   constructor(){
     this.categories = [];
   }
-
-  create({description, name}: IcreateCategory): void {
+  
+  create({description, name}: ICreateCategoryDTO): void {
     const category = new Category()
     Object.assign(category, {
       name,
@@ -26,6 +20,7 @@ class CategoriesRepositories {
 
     this.categories.push(category)
   }
+
   list(): Category[]{
     return this.categories
   }
@@ -35,4 +30,4 @@ class CategoriesRepositories {
   }
 }
 
-export { CategoriesRepositories }
+export { CategoriesRepository }
