@@ -1,4 +1,4 @@
-import { ISpecificationRepository } from "../repositories/ISpecificationsRepository";
+import { ISpecificationRepository } from "../../repositories/ISpecificationsRepository";
 
 interface IRequest {
   name: string;
@@ -7,7 +7,7 @@ interface IRequest {
 
 // O Service não deve conhecer o Banco de dados a ser acessado ou como será acessado
 // Por isso ele recebe o repositorio, mas ele conhece apenas o contrato desse repositório através 
-class CreateSpecificationService {
+class CreateSpecificationUseCase {
   constructor(private specificationRepository: ISpecificationRepository){}
     execute({name,description}: IRequest){
     
@@ -22,4 +22,4 @@ class CreateSpecificationService {
 }
 
 
-export { CreateSpecificationService }
+export { CreateSpecificationUseCase }
