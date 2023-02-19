@@ -30,6 +30,7 @@ class ImportCategoryUseCase {
             description: description.slice(0, description.length - 1)
         })
       }).on("end", () => {
+        fs.promises.unlink(file.path)
         resolve(categories)
       }).on("error", (err) => {
         reject(err)
