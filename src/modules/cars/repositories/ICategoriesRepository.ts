@@ -1,4 +1,4 @@
-import { Category } from "../models/Category";
+import { Category } from "../entities/Category";
 
 // DTO => Data transfer object
 // Interface criada para que a camada de rotas não conheça
@@ -9,7 +9,7 @@ export interface ICreateCategoryDTO {
   description: string
 }
 export interface ICategoriesRepository {
-  findByName(name: string): Category
-  list(): Category[]
-  create({name, description}: ICreateCategoryDTO): void
+  findByName(name: string): Promise<Category>
+  list(): Promise<Category[]>
+  create({name, description}: ICreateCategoryDTO): Promise<void>
 }

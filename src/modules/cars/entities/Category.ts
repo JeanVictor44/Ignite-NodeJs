@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn,Column, CreateDateColumn } from 'typeorm'
 
 @Entity('categories')
-export class Category {
+class Category {
   @PrimaryGeneratedColumn("uuid")
   id: number
 
@@ -14,3 +14,5 @@ export class Category {
   @CreateDateColumn({name: "created_at"})
   createdAt: Date
 }
+
+export { Category }
