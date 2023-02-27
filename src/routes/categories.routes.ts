@@ -3,6 +3,7 @@ import { createCategoryController} from '../modules/cars/useCases/createCategory
 import { listCategoriesController } from '../modules/cars/useCases/listCategories'
 import multer from 'multer'
 import { importCategoryController } from '../modules/cars/useCases/importCategory'
+import { deleteCategoryController } from '../modules/cars/useCases/deleteCategory'
 
 const categoriesRoutes = Router()
 
@@ -21,4 +22,9 @@ categoriesRoutes.get('/', (request, response) => {
 categoriesRoutes.post('/import', upload.single('file'),(request, response) => {
   return importCategoryController.handle(request, response)
 })
+
+categoriesRoutes.delete('/:id', (request, response) => {
+  return deleteCategoryController.handle(request, response)
+})
+
 export { categoriesRoutes }

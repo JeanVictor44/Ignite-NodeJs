@@ -18,7 +18,18 @@ constructor(){
   //   return this.INSTANCE
   // }
     
-  
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id)
+  }
+
+  async findById(id: string): Promise<Category>{
+    const category = await this.repository.findOne({
+      where: {
+        id
+      }
+    })
+    return category
+  }
 
   async create({description, name}: ICreateCategoryDTO): Promise<void> {
     // Cria a entidade

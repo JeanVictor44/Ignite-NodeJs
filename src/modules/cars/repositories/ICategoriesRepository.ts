@@ -12,4 +12,6 @@ export interface ICategoriesRepository {
   findByName(name: string): Promise<Category>
   list(): Promise<Category[]>
   create({name, description}: ICreateCategoryDTO): Promise<void>
+  delete(id: string): Promise<void>
+  findById(id: string): Promise<Category>
 }

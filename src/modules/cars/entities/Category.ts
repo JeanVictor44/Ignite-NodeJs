@@ -3,7 +3,7 @@ import { Entity, PrimaryGeneratedColumn,Column, CreateDateColumn } from 'typeorm
 @Entity('categories')
 class Category {
   @PrimaryGeneratedColumn("uuid")
-  id: number
+  id: string
 
   @Column({type:"varchar"})
   name: string
