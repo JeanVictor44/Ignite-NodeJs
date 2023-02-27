@@ -7,4 +7,6 @@ export const AppDataSource = new DataSource({
   username: "postgres",
   password: "postgres",
   database: "rentx_db",
+  entities: [`${__dirname}/**/entities/*.{ts,js}`],
+  migrations: [`${__dirname}/**/migrations/*.{ts,js}`],
 }) 
