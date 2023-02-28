@@ -4,4 +4,4 @@ import { CreateSpecificationController } from "../modules/cars/useCases/createSp
 export const specificationsRoutes = Router()
 
 const createSpecificationController = new CreateSpecificationController()
-specificationsRoutes.post('/', createSpecificationController.handle)
+specificationsRoutes.post('/', createSpecificationController.handle) 
