@@ -1,9 +1,9 @@
+import 'reflect-metadata'
 import express from 'express'
 import { router } from './routes'
 import swaggerUi from 'swagger-ui-express'
 import swaggerFile from './swagger.json'
 import { AppDataSource } from './database/data-source'
-import 'reflect-metadata'
 import './shared/container'
 
 AppDataSource.initialize().then(() => {
