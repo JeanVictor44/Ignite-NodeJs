@@ -1,4 +1,5 @@
-import { ISpecificationRepository } from "../../repositories/ISpecificationsRepository";
+import { injectable, inject} from "tsyringe";
+import { ISpecificationsRepository } from "../../repositories/ISpecificationsRepository";
 
 interface IRequest {
   name: string;
@@ -7,8 +8,13 @@ interface IRequest {
 
 // O Service não deve conhecer o Banco de dados a ser acessado ou como será acessado
 // Por isso ele recebe o repositorio, mas ele conhece apenas o contrato desse repositório através 
+
+@injectable()
 class CreateSpecificationUseCase {
-  constructor(private specificationRepository: ISpecificationRepository){}
+  constructor(
+    @inject("SpecificationsRepository")
+    private specificationRepository: ISpecificationsRepository
+  ){}
     execute({name,description}: IRequest){
     
       const specificationAlreadyExists = this.specificationRepository.findByName(name)

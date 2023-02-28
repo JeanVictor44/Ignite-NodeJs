@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 import { DeleteCategoryUseCase } from "./DeleteCategoryUseCase";
 
 class DeleteCategoryController{
-  constructor(private deleteCategoryUseCase: DeleteCategoryUseCase){}
   async handle(request: Request, response: Response): Promise<Response>{
     const { id } = request.params
 
-    await this.deleteCategoryUseCase.execute(id)
+    const deleteCategoryUseCase = container.resolve(DeleteCategoryUseCase)
+    await deleteCategoryUseCase.execute(id)
 
     return response.sendStatus(204)
 

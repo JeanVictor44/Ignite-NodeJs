@@ -4,6 +4,7 @@ import swaggerUi from 'swagger-ui-express'
 import swaggerFile from './swagger.json'
 import { AppDataSource } from './database/data-source'
 import 'reflect-metadata'
+import './shared/container'
 
 AppDataSource.initialize().then(() => {
   const app = express()
