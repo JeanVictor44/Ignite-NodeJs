@@ -5,7 +5,7 @@ import { User } from "../../entities/User";
 import { IUsersRepository } from "../IUsersRepository";
 
 export class UsersRepository implements IUsersRepository{
-  repository: Repository<User>
+  private repository: Repository<User>
   constructor(){
     this.repository = AppDataSource.getRepository(User)
   }
@@ -15,6 +15,7 @@ export class UsersRepository implements IUsersRepository{
       name,
       email,
       password,
+      username,
       driverLicense
     })
 
