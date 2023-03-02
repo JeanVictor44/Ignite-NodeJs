@@ -10,13 +10,6 @@ constructor(){
     this.repository = AppDataSource.getRepository(Category) 
   }
   
-  // public static getInstance(): CategoriesRepository{
-  //   if(!CategoriesRepository.INSTANCE){
-  //     CategoriesRepository.INSTANCE = new CategoriesRepository()
-  //   }
-  //   return this.INSTANCE
-  // }
-    
   async delete(id: string): Promise<void> {
     await this.repository.delete(id)
   }
