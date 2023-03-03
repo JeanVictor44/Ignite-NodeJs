@@ -12,7 +12,7 @@ class AuthenticateUserController {
       password
     })
 
-    response.status(200).send(token)
+    return response.status(200).send(token)
 
   }
 }

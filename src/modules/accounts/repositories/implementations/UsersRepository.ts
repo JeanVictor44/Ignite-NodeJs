@@ -10,6 +10,14 @@ export class UsersRepository implements IUsersRepository{
     this.repository = AppDataSource.getRepository(User)
   }
 
+  async findById(id: string): Promise<User> {
+    const user = await this.repository.findOne({
+      where: {
+        id
+      }
+    })
+    return user
+  }
   async create({ name, username, email, password, driverLicense }: ICreateUserDTO): Promise<void> {
     const user = this.repository.create({
       name,
