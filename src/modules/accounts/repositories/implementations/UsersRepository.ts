@@ -18,7 +18,7 @@ export class UsersRepository implements IUsersRepository{
       username,
       driverLicense
     })
-
+                                
     await this.repository.save(user)
   }
 
