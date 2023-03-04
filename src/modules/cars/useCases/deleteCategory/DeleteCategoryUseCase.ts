@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../../errors/AppError";
 import { ICategoriesRepository } from "../../repositories/ICategoriesRepository";
 
 
@@ -12,7 +13,7 @@ class DeleteCategoryUseCase {
     const categoryExists = await this.categoriesRepository.findById(id)
     
     if(!categoryExists){
-      throw new Error("Category doesn't exists")
+      throw new AppError("Category doesn't exists")
     }
 
     await this.categoriesRepository.delete(id)
