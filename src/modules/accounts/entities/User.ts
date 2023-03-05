@@ -17,6 +17,9 @@ export class User {
   @Column({type: "varchar"})
   password: string
   
+  @Column({type: "varchar", nullable:true})
+  avatar: string
+
   @Column({name:"driver_license",type: "varchar"})
   driverLicense: string
   
