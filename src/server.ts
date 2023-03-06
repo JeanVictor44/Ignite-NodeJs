@@ -7,6 +7,7 @@ import swaggerFile from './swagger.json'
 import { AppDataSource } from './database/data-source'
 import './shared/container'
 import { AppError } from './errors/AppError'
+import { errorMiddleware } from './middlewares/errorMiddleware'
 
 AppDataSource.initialize().then(() => {
   const app = express()
@@ -16,19 +17,7 @@ AppDataSource.initialize().then(() => {
   // Endereço da api, função para configurar o server e setup com as configurações em Json do Swagger 
   app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
   app.use(router)
-
-  app.use((err: Error, request: Request, response: Response, next: NextFunction ) => {
-    if(err instanceof AppError){
-      return response.status(err.statusCode).json({
-        message: err.message,
-      })
-    }else {
-      return response.status(500).json({
-        status: "error",
-        message: `Insternal server error - ${err.message}`
-      })
-    }
-  })
+  app.use(errorMiddleware)
 
   app.listen(3333, () => {
     console.log('Server is running on http://localhost:3333')
