@@ -10,7 +10,7 @@ import { AppError } from './errors/AppError'
 import { errorMiddleware } from './middlewares/errorMiddleware'
 
 AppDataSource.initialize().then(() => {
-  const app = express()
+  const app = express() 
 
   app.use(express.json())
 
