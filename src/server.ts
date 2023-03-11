@@ -6,7 +6,6 @@ import swaggerUi from 'swagger-ui-express'
 import swaggerFile from './swagger.json'
 import { AppDataSource } from './database/data-source'
 import './shared/container'
-import { AppError } from './errors/AppError'
 import { errorMiddleware } from './middlewares/errorMiddleware'
 
 AppDataSource.initialize().then(() => {

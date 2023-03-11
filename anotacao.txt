@@ -1,0 +1,133 @@
+Use case
+- Use case são as funcionalidades da nossa aplicação
+- dentro do arquivo de use case está contido a regra de negócios da aplicação(domínio)
+
+useCase -> createUser
+- listar categorias
+- criar categoria
+- criar usuário
+
+
+Separar a pasta de useCase em:
+- index.ts -> arquivo com instanciamento do repositório, useCase e controller + exportação do controller
+
+- useCase -> arquivo que acessa o repositório com as funcionalidades de criar, lista, atualizar
+             contêm as regras de negócio da aplicação
+
+- controller -> arquivo que recebe os dados no request, repassa para o useCase e retorna um reponse
+
+
+Docker 
+
+HOST -> Máquina
+- Kernel -> Faz a ponte entre o hardware e software. Gerencia memória Ram e etc
+- Binários e Libs -> vinculadas ao SO
+- Duas aplicações node + banco postgres
+- essas aplicações compartilham dos mesmos arquivos binários e bibliotecas
+- A atualização para uma aplicação pode afetar todas as outras, 
+  pois elas compartilham bibliotecas e arquivos binário
+- Elas podem parar de funcionar por não serem compatíveis com a versão atualizada
+
+Formas de contornar esse problema 
+
+VM's -> Máquinas virtuais com SO próprio que executam de forma isolada dentro do Host
+
+Criando uma máquina virtual para cada recurso:
+- Isolamos as aplicações 
+- Elas terão seus próprios binários e libs. 
+- A atualização de um não impacta no outro
+
+A grande desvantagens de isolar aplicações em 
+VM's é que cada uma possui seu próprio kernel,
+um kernel é algo muito pesado, isso irá exigir 
+mais recurso do Host(máquina principal) e mais 
+recurso sai mais caro
+HOST
+- O node terá seu próprio SO para ser executado/ com seu próprio kernel/ binários e Libs 
+- O Postgres terá seu próprio SO para ser executado/ com seu próprio kernel/ binários e Libs
+- Hypervisor(Virtual Box) -> Software que cria e roda máquinas virtuais
+- Binários e Libs
+- Kernel
+
+
+
+Linux containers 
+- Virtualização a nível do sistema operacional 
+usando o kernel do host
+Host
+- Node com seus binários e libs
+- Postgres com seus binários e libs
+- Container Engine -> Quem gerencia os containers, cria, deleta 
+- Binários e Libs
+- Kernel
+
+
+Docker é um Container Engine
+
+Imagens Docker -> Define o que será executado dentro do container
+- com imagens definimos instruções para criar o container, versões das aplicações
+
+Docker Hub
+- site com Imagens já criadas -> Instruções pré criadas para diferentes tecnologias que irão rodar no container
+
+Por que usar Containers?
+- Aplicações rodam de fora isolada (não interferem uma na outra)
+- Usa o mesmo Kernel da máquina base, tornando-se mais leve e eficiente quando comparado às VMs tradicionais
+- Portabilidade -> Conseguimos executar facilmente containers com as versões que queremos e elas irão funcionar
+                   como previsto em desenvolvimento e produção
+
+
+Container -> São ambientes isolados para execução de uma aplicação / tecnologia
+
+- Ferramenta para criação de containers
+- Container: ambiente isolado
+- Imagens: instruções para criação de um container
+- O que "roda" localmente "roda" em produção -> "Na minha máquina funciona" acabou
+- Mesmo SO, compartilhando recursos da máquina host
+
+Sem Docker
+- Para cada ferramenta uma máquina virtual
+- ex: Uma máquina virtual para o postgres, outra para o reddis, outra para o node
+- custoso
+
+
+Docker compose
+The Compose file provides a way to document and 
+configure all of the application's service 
+dependencies (databases, queues, caches, web service 
+APIs, etc). 
+
+Orquestrador de container docker 
+- É uma forma de executar vários container docker
+  e definir quem depende de quem
+
+
+Quem tiver nosso docker-compose.yml
+
+conseguimos executar vários serviços, 
+ou seja vários containers
+
+com todas as configurações dos nossos serviços
+conseguirá rodar todos os recursos necessários
+para o funcionamento da nossa aplicação sem precisar
+ter as coisas instaladas na máquina
+
+Docker comandos  
+
+docker ps -> lista os containers em execução
+docker ps -a -> lista todos os containers
+docker rm nome ou idDoContainer -> remover um container docker -> precisa parar antes de remover
+docker stop nome ou idDoContainer -> parar um container
+docker start nome ou idDoContainer -> iniciar um container
+docker exec -it nome ou idDoContainer bash -> Executa o bash do container que criamos 
+docker logs nome ou idDoContainer -> Mostra os últimos logs
+docker logs nome ou idDoContainer -f -> Mostra os últimos logs e monitora os logs                            
+
+docker compose comandos
+
+- Usar a cada vez que o docker compose for alterdo
+docker compose up -d -> Executa os serviços em background -> esconde o cmd
+docker compose stop -> Para todos os serviços
+docker compose down -> Remove tudo que foi criado dentro do serviço
+docker compose start -> executar os serviços que foram subidos anteriormente com o up
+docker compose up --force-recreate -> força a recriar o container
