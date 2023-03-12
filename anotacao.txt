@@ -1,3 +1,5 @@
+yarn add ts-config-paths -D -> Para o ambiente de desenvolvimento entender os imports @
+
 Use case
 - Use case são as funcionalidades da nossa aplicação
 - dentro do arquivo de use case está contido a regra de negócios da aplicação(domínio)
