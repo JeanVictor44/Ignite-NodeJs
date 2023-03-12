@@ -1,0 +1,18 @@
+Testes unitários -> Testar a regra de negócio da nossa aplicação através de pequenos pedaços dela. Testar cada parte separadamente
+
+
+Testes de Integração -> Testar partes integradas, unidas 
+
+-> routes -> controllers -> useCases -> repository
+<- repository <- useCases <- controllers <- routes
+
+
+Test Driven Development
+TDD -> Metodologia para desenvolvimento a base de Testes
+       Primeiro criamos testes que falham e visam garantir
+       a implementação correta das nossas regras de negócios 
+       e em seguida desenvolvemos a aplicação visando passar 
+       nesses testes
+
+Vantagens de ter testes: 
+- Caso uma regra de negócio mude os testes mostram os erros criados
