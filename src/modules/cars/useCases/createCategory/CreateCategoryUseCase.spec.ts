@@ -5,6 +5,7 @@ import 'reflect-metadata'
 
 import { CreateCategoryUseCase } from "./CreateCategoryUseCase"
 import { CategoriesRepositoryInMemory } from "../../repositories/in memory/CategoriesRepositoryInMemory"
+import { AppError } from '../../../../errors/AppError'
 
 let createCategoryUseCase: CreateCategoryUseCase
 let categoriesRepositoryInMemory: CategoriesRepositoryInMemory
@@ -24,7 +25,20 @@ describe("Create Category",() => {
     await createCategoryUseCase.execute(category)
     
     const categoryCreated = await categoriesRepositoryInMemory.findByName(category.name)
-    console.log(categoryCreated)
     expect(categoryCreated).toHaveProperty("id")
+  })
+
+  it("shouldn't be able to create a category with name exists" , async() => {
+    expect(async () => {
+      const category = {
+        name: "Category Test",
+        description: "Category description test"
+      }
+  
+      await createCategoryUseCase.execute(category)
+      await createCategoryUseCase.execute(category)
+  
+    }).rejects.toBeInstanceOf(AppError)
+
   })
 })
