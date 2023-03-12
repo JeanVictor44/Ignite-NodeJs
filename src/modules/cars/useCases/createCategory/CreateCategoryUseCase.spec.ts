@@ -28,7 +28,7 @@ describe("Create Category",() => {
     expect(categoryCreated).toHaveProperty("id")
   })
 
-  it("shouldn't be able to create a category with name exists" , async() => {
+  it("shouldn't be able to create a category with name exists", async() => {
     expect(async () => {
       const category = {
         name: "Category Test",
